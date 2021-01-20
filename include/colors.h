@@ -27,6 +27,15 @@
 extern "C" {
 #endif
 
+typedef struct {
+	uint32_t hue;
+	uint32_t sat;
+	uint32_t val;
+} color_hsv_t;
+
+void rgb2hsv(uint32_t rgb, color_hsv_t *hsv);
+void hsv2rgb(color_hsv_t hsv, uint32_t *rgb);
+
 #define RGB565(rgb888) 		( ((((rgb888&0xFF0000)>>16) & 0xF8) << 8) |  \
 							  ((((rgb888&0x00FF00)>>8) & 0xFC) << 3) | 	\
 							  ((((rgb888&0x0000FF)>>0) & 0xF8) >> 3) )
