@@ -33,12 +33,11 @@ typedef struct {
 	uint32_t val;
 } color_hsv_t;
 
-void rgb2hsv(uint32_t rgb, color_hsv_t *hsv);
-void hsv2rgb(color_hsv_t hsv, uint32_t *rgb);
-
-#define RGB565(rgb888) 		( ((((rgb888&0xFF0000)>>16) & 0xF8) << 8) |  \
-							  ((((rgb888&0x00FF00)>>8) & 0xFC) << 3) | 	\
-							  ((((rgb888&0x0000FF)>>0) & 0xF8) >> 3) )
+void rgb_2_hsv(uint32_t rgb, color_hsv_t *hsv);
+void hsv_2_rgb(color_hsv_t hsv, uint32_t *rgb);
+void rgb_2_color565(uint32_t rgb, uint16_t *color565);
+void color565_2_rgb(uint16_t color565, uint32_t *rgb);
+void rgb_2_swap565(uint32_t rgb, uint16_t *swap565);
 
 #define COLOR_MAROON							0x800000
 #define COLOR_DARK_RED							0x8B0000
