@@ -19,7 +19,7 @@ static float min(float a, float b, float c) {
 
 void rgb_2_hsv(uint32_t rgb, color_hsv_t *hsv)
 {
-	float h = 0, s, v;
+    float h = 0, s, v;
     float r = (float)((uint8_t)(rgb >> 16)) / 255.0;
     float g = (float)((uint8_t)(rgb >> 8)) / 255.0;
     float b = (float)((uint8_t)(rgb >> 0)) / 255.0;
@@ -113,4 +113,15 @@ void rgb_2_swap565(uint32_t rgb, uint16_t *swap565)
 {
     uint16_t color_565 = RGB565(rgb);
     *swap565 = ((color_565 << 8) & 0xFF00) | ((color_565 >> 8) & 0x00FF);
+}
+
+void swap565_2_rgb(uint16_t swap565, uint32_t *rgb)
+{
+    uint16_t color565 = ((swap565 << 8) & 0xFF00) | ((swap565 >> 8) & 0x00FF);
+
+    uint32_t r = ((((color565 >> 11) & 0x1F) * 527) + 23) >> 6;
+    uint32_t g = ((((color565 >> 5) & 0x3F) * 259) + 33) >> 6;
+    uint32_t b = (((color565 & 0x1F) * 527) + 23) >> 6;
+
+    *rgb = ((r << 16) + (g << 8) + b);
 }

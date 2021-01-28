@@ -35,9 +35,12 @@ typedef struct {
 
 void rgb_2_hsv(uint32_t rgb, color_hsv_t *hsv);
 void hsv_2_rgb(color_hsv_t hsv, uint32_t *rgb);
+
 void rgb_2_color565(uint32_t rgb, uint16_t *color565);
 void color565_2_rgb(uint16_t color565, uint32_t *rgb);
+
 void rgb_2_swap565(uint32_t rgb, uint16_t *swap565);
+void swap565_2_rgb(uint16_t swap565, uint32_t *rgb);
 
 #define COLOR_MAROON							0x800000
 #define COLOR_DARK_RED							0x8B0000
