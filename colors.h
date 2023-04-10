@@ -1,24 +1,31 @@
-// MIT License
-
-// Copyright (c) 2020 phonght32
-
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
+/**
+ * @file color.h
+ *
+ * C source code defines many RGB888 format colors. It also provides functions 
+ * that implement mutual color format conversion.
+ *
+ * MIT License
+ *
+ * Copyright (c) 2023 phonght32
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 #ifndef _COLORS_H_
 #define _COLORS_H_
@@ -26,21 +33,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-typedef struct {
-	uint32_t hue;
-	uint32_t sat;
-	uint32_t val;
-} color_hsv_t;
-
-void rgb_2_hsv(uint32_t rgb, color_hsv_t *hsv);
-void hsv_2_rgb(color_hsv_t hsv, uint32_t *rgb);
-
-void rgb_2_color565(uint32_t rgb, uint16_t *color565);
-void color565_2_rgb(uint16_t color565, uint32_t *rgb);
-
-void rgb_2_swap565(uint32_t rgb, uint16_t *swap565);
-void swap565_2_rgb(uint16_t swap565, uint32_t *rgb);
 
 #define COLOR_MAROON							0x800000
 #define COLOR_DARK_RED							0x8B0000
@@ -181,6 +173,80 @@ void swap565_2_rgb(uint16_t swap565, uint32_t *rgb);
 #define COLOR_GAINSBORO							0xDCDCDC
 #define COLOR_WHITE_SMOKE 						0xF5F5F5
 #define COLOR_WHITE 							0xFFFFFF
+
+/**
+ * @struct  HSV color structure.
+ *
+ * @param 	hue Hue.
+ * @param  	sat Saturation.
+ * @param 	val Value.
+ */
+typedef struct {
+	uint32_t hue;
+	uint32_t sat;
+	uint32_t val;
+} color_hsv_t;
+
+/**
+ * @brief 	Convert from RGB888 color to HSV color.
+ * 
+ * @param 	rgb RGB888 color.
+ * @param 	hsv Pointer references to the HSV color structure.
+ * 
+ * @return 	None.
+ */
+void rgb_2_hsv(uint32_t rgb, color_hsv_t *hsv);
+
+/**
+ * @brief 	Convert from HSV color to RGB888 color.
+ * 
+ * @param 	hsv Pointer references to the HSV color structure.
+ * @param 	rgb RGB888 color.
+ *
+ * @return 	None.
+ */
+void hsv_2_rgb(color_hsv_t hsv, uint32_t *rgb);
+
+/**
+ * @brief 	Convert from RGB888 color to RGB565 color.
+ * 
+ * @param 	rgb RGB888 color.
+ * @param 	color565 Pointer references to the RGB565 color.
+ *
+ * @return 	None.
+ */
+void rgb_2_color565(uint32_t rgb, uint16_t *color565);
+
+/**
+ * @brief 	Convert from RGB565 color to RGB888 color.
+ * 
+ * @param 	color565 RGB565 color.
+ * @param 	rgb Pointer references to the RGB888 color.
+ *
+ * @return 	None.
+ */
+void color565_2_rgb(uint16_t color565, uint32_t *rgb);
+
+/**
+ * @brief 	Convert from RGB888 color to swapped RGB565 color.
+ * 
+ * @param 	rgb RGB888 color.
+ * @param 	swap565 Pointer references to the swapped RGB565 color.
+ *
+ * @return 	None.
+ */
+void rgb_2_swap565(uint32_t rgb, uint16_t *swap565);
+
+/**
+ * @brief 	Convert from swapped RGB565 color to RGB888 color.
+ * 
+ * @param 	swap565 swapped RGB565 color.
+ * @param 	rgb Pointer references to the RGB888 color.
+ *
+ * @return 	None.
+ */
+void swap565_2_rgb(uint16_t swap565, uint32_t *rgb);
+
 
 #ifdef __cplusplus
 }
